@@ -98,6 +98,52 @@ def summarize(bench: BenchResult) -> str:
     return "\n".join(lines)
 
 
+def render_trend(snapshots: list, out_path: str) -> None:
+    """Draw tells % per config across snapshot timestamps, into ``out_path``.
+
+    Every plotted point traces to a committed ``results/*.json`` via the SBN-025 series.
+    Degrades gracefully: a single snapshot renders as labelled points (no misleading
+    line); a config present in only some snapshots shows a broken line (NaN gap), never
+    an invented value. Reuses the bar chart's palette/style for visual consistency.
+    """
+    from stealthbench import _style
+    from stealthbench.history import tells_pct_series
+
+    _style.apply()
+    import matplotlib.pyplot as plt
+
+    series = tells_pct_series(snapshots)
+    xs = list(range(len(snapshots)))
+    labels = [s.timestamp[:16] for s in snapshots]  # trim ISO stamp to the minute
+    single = len(snapshots) == 1
+
+    fig, ax = plt.subplots(figsize=(7.4, 4.6))
+    for i, (name, ys) in enumerate(sorted(series.items())):
+        color = _style.TREND_PALETTE[i % len(_style.TREND_PALETTE)]
+        linestyle = _style.TREND_LINESTYLES[i % len(_style.TREND_LINESTYLES)]
+        marker = _style.TREND_MARKERS[i % len(_style.TREND_MARKERS)]
+        if single:
+            # one snapshot: labelled points, never a line implying a trend
+            pts = [(x, y) for x, y in zip(xs, ys) if y is not None]
+            if pts:
+                ax.scatter([x for x, _ in pts], [y for _, y in pts],
+                           label=name, color=color, marker=marker)
+        else:
+            # None -> NaN so matplotlib breaks the line into a gap instead of interpolating
+            ys_plot = [float("nan") if y is None else y for y in ys]
+            ax.plot(xs, ys_plot,
+                    color=color, linestyle=linestyle, marker=marker, label=name)
+    ax.set_ylim(0, 100)
+    ax.set_ylabel("Automation-tells passed (%)")
+    ax.set_title("stealthbench — tells % per config across snapshots")
+    ax.set_xticks(xs)
+    ax.set_xticklabels(labels, rotation=20, ha="right")
+    ax.legend(fontsize=8)
+    fig.tight_layout()
+    fig.savefig(out_path)
+    plt.close(fig)
+
+
 def render_chart(bench: BenchResult, out_path: str) -> None:
     from stealthbench import _style
 
