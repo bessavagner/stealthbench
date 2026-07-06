@@ -58,3 +58,33 @@ def test_creepjs_timeout_raises_instead_of_reading_partial_dom(monkeypatch):
 
     with pytest.raises(TimeoutError):
         det.measure(handle)
+
+
+def test_botd_flat_bot_payload_without_result_wrapper():
+    # payload has a top-level "bot" and no "result" -> used verbatim (botd.py:19-23)
+    handle = FakeHandle(
+        {
+            "return window.__BOTD__ !== undefined": True,
+            "return window.__BOTD__": {"bot": True, "botKind": "headless_chrome"},
+        }
+    )
+    det = BotD("http://example.test")
+
+    signals = det.measure(handle)
+
+    assert signals == {"bot": True, "kind": "headless_chrome"}
+
+
+def test_creepjs_success_returns_lie_count(monkeypatch):
+    handle = FakeHandle(
+        {
+            r'return /FP ID:\s*[0-9a-f]{16,}/i.test(document.body.innerText || "")': True,
+            "return document.querySelectorAll('.lies').length": 3,
+        }
+    )
+    monkeypatch.setattr("stealthbench.detectors.creepjs.time.sleep", lambda *_: None)
+    det = CreepJS("http://example.test")
+
+    signals = det.measure(handle)
+
+    assert signals == {"lies": 3}
