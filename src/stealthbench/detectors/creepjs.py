@@ -21,5 +21,7 @@ class CreepJS:
             if ready:
                 time.sleep(3)  # let late lie rows render
                 break
+        else:
+            raise TimeoutError("CreepJS never rendered its 'FP ID' marker within 45s")
         lies = handle.evaluate("return document.querySelectorAll('.lies').length")
         return {"lies": int(lies)}
