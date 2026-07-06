@@ -39,3 +39,20 @@ def test_detector_error_is_captured_not_raised():
     dr = bench.trials[0].configs[0].results[0]
     assert dr.detector == "boom"
     assert dr.error is not None and "detector exploded" in dr.error
+
+
+def test_config_build_failure_is_recorded_not_raised():
+    class RaisingConfig:
+        label = "broken"
+
+        def build(self):
+            raise RuntimeError("driver would not start")
+
+    det = FakeDetector("tells", {"passed": 1, "total": 1})
+
+    bench = run_bench([RaisingConfig()], [det], _meta(trials=1))
+
+    cr = bench.trials[0].configs[0]
+    assert cr.config == "broken"
+    assert cr.error is not None and "driver would not start" in cr.error
+    assert cr.results == []  # detector never ran; no quit() attempted on a None handle
