@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from stealthbench.core.results import (
     SCHEMA_VERSION,
     BenchResult,
@@ -6,6 +8,7 @@ from stealthbench.core.results import (
     RunMetadata,
     Trial,
 )
+from stealthbench.report import summarize
 
 
 def _sample() -> BenchResult:
@@ -35,7 +38,7 @@ def _sample() -> BenchResult:
 
 
 def test_schema_version_defaults():
-    assert _sample().metadata.schema_version == SCHEMA_VERSION == 1
+    assert _sample().metadata.schema_version == SCHEMA_VERSION == 2
 
 
 def test_json_round_trip():
@@ -61,3 +64,14 @@ def test_components_round_trips():
     )
     restored = RunMetadata.model_validate_json(meta.model_dump_json())
     assert restored.components == {"chrome": "149", "selenium": "4.45.0"}
+
+
+def test_committed_v1_snapshot_still_parses_and_renders():
+    # Permanent regression fixture: the S1/S2 3-config snapshot is schema_version 1.
+    raw = Path("results/20260706T155231.json").read_text()
+    bench = BenchResult.from_json(raw)
+    assert bench.metadata.schema_version == 1
+    assert bench.metadata.components == {}  # absent in v1 -> defaults, no crash
+    md = summarize(bench)
+    assert md.startswith("| Config |")
+    assert "vanilla" in md
