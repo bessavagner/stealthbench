@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+# results/ and report artifacts ARE committed (traceability) — do not ignore them.
