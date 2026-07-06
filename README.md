@@ -183,5 +183,5 @@ here so nothing touches their live services.
 
 ## License
 
-Licensing is still to be decided; until a `LICENSE` file is added, all rights are
-reserved. If you'd like to use this, open an issue.
+[MIT](LICENSE) © Vagner Bessa. The self-hosted detectors it measures against keep
+their own licenses (see the vendored bundles under `src/stealthbench/detectors/assets/`).
