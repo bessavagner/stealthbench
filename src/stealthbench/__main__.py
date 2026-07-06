@@ -7,6 +7,7 @@ import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
 
+from stealthbench.configs.camoufox import CamoufoxConfig
 from stealthbench.configs.stealth import StealthConfig
 from stealthbench.configs.uc import UcConfig
 from stealthbench.configs.vanilla import VanillaConfig
@@ -53,7 +54,12 @@ def main() -> None:
     args = p.parse_args()
 
     chrome = _chrome_major()
-    configs = [VanillaConfig(), StealthConfig(), UcConfig(chrome_major=chrome)]
+    configs = [
+        VanillaConfig(),
+        StealthConfig(),
+        UcConfig(chrome_major=chrome),
+        CamoufoxConfig(),
+    ]
     detectors = [
         TellsPanel(args.detector_host),
         BotD(args.detector_host),
@@ -61,7 +67,7 @@ def main() -> None:
     ]
     meta = RunMetadata(
         timestamp=datetime.now(timezone.utc).isoformat(),
-        browser=f"Chrome {chrome}" if chrome else "Chrome (unknown)",
+        browser=(f"Chrome {chrome}" if chrome else "Chrome (unknown)") + " + Camoufox",
         os=platform.platform(),
         headful=True,
         trials=args.trials,

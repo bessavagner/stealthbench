@@ -16,15 +16,21 @@ run all of them through the same detectors on the same machine and read the numb
 
 ## Latest snapshot
 
-Chrome 149 · Linux · 3 trials · `results/20260706T155231.json`
+Chrome 149 + Camoufox · Linux · 3 trials · `results/20260706T214120910749.json`
 
 | Config | Automation-tells passed | BotD verdict | CreepJS local lies |
 |---|:---:|:---:|:---:|
-| vanilla (stock Selenium) | 84% | caught (selenium) | 0 |
+| vanilla (stock Selenium) | 82% | caught (selenium) | 0 |
 | selenium-stealth | 94% | caught (selenium) | 2 |
 | undetected-chromedriver | 94% | **passed** | 0 |
+| camoufox (stealth Firefox) | 82% | **passed** | 0 |
 
 ![Automation-tells passed per config; bar colour = BotD verdict](results/pass-rate.png)
+
+> `camoufox` passes BotD and CreepJS while scoring 82% on the tells panel — the three
+> tells it "fails" are Chrome-specific (`window.chrome` present, Chrome's `productSub`,
+> Chrome's `eval.toString().length`), which a genuine Firefox legitimately does not
+> match. That's the honest signal, not a regression.
 
 > **This is a snapshot, not a benchmark leaderboard.** These are the numbers from *one*
 > environment on *one* day, run from a single IP. Detection evolves; a config that passes
@@ -58,6 +64,7 @@ A run is the cross-product **configs × detectors × trials**:
 | `vanilla` | Stock Selenium Chrome — the baseline. |
 | `selenium-stealth` | Selenium + [`selenium-stealth`](https://pypi.org/project/selenium-stealth/) patches (webdriver flag, languages, vendor, WebGL, UA). |
 | `undetected-chromedriver` | [`undetected-chromedriver`](https://pypi.org/project/undetected-chromedriver/), pinned to the installed Chrome major. |
+| `camoufox` | [Camoufox](https://github.com/daijro/camoufox) — a stealth **Firefox** driven through Playwright's sync API, fingerprint-spoofed by default. The one non-Chrome arm in the fleet. |
 
 **Detectors** (measure signals from a browser, return numbers):
 
@@ -87,24 +94,31 @@ Config.build() ─┐                          ┌─ Detector.measure(handle)
              (pure, error-isolating)                 (versioned)     (table + chart)
 ```
 
-- **Detectors are written against `BrowserHandle`, not a raw driver.** Adding a new
-  browser stack (e.g. a Camoufox/Playwright arm) is a new `Config` + a new
-  `BrowserHandle` implementation — **zero detector changes**.
+- **Detectors are written against `BrowserHandle`, not a raw driver.** The
+  Camoufox/Playwright arm is exactly this: a new `Config` (`CamoufoxConfig`) plus a new
+  `BrowserHandle` (`PlaywrightHandle`, adapting a Playwright `Page`) — added with
+  **zero detector changes**.
 - **Provider seam is enforced:** only `src/stealthbench/configs/` imports a driver SDK
-  (`selenium` / `selenium-stealth` / `undetected-chromedriver`). Everything else —
-  `core/`, `runner.py`, `report.py`, and every detector — depends only on the Protocols.
+  (`selenium` / `selenium-stealth` / `undetected-chromedriver` / `camoufox` +
+  `playwright`). Everything else — `core/`, `runner.py`, `report.py`, and every detector
+  — depends only on the Protocols. A test (`tests/test_seam.py`) fails the build if a
+  browser SDK is imported anywhere outside `configs/`.
 - **The pure core is unit-tested with fakes** (no browser required); the browser-touching
   configs and detectors are validated by the end-to-end run.
 
 ## Install
 
 Requires **Python 3.12+**, [uv](https://docs.astral.sh/uv/), a real **Chrome/Chromium**,
-and **Node.js** (to serve the BotD bundle).
+and **Node.js** (to serve the BotD bundle). The `camoufox` config additionally uses a
+patched stealth **Firefox**, fetched once via `camoufox fetch` (below).
 
 ```bash
 git clone https://github.com/bessavagner/stealthbench.git
 cd stealthbench
 uv sync
+
+# one-time: download Camoufox's patched Firefox (like `npm ci` for the BotD bundle)
+uv run camoufox fetch
 ```
 
 ## Run a benchmark
@@ -112,6 +126,10 @@ uv sync
 stealthbench talks to two local detector servers. Bring them up, then run the bench:
 
 ```bash
+# 0. one-time after `uv sync`: download Camoufox's patched Firefox
+#    (like `npm ci` for the BotD bundle) — needed for the `camoufox` config
+uv run camoufox fetch
+
 # 1. tells panel + BotD on :8901  (the BotD bundle is vendored via package-lock.json)
 ( cd src/stealthbench/detectors/assets && npm ci && python3 -m http.server 8901 ) &
 
@@ -140,7 +158,8 @@ This writes a fresh `results/<timestamp>.json`, a `results/summary.md` table, an
 The published numbers are reproducible. To regenerate `results/` from scratch:
 
 1. **Prerequisites:** Python 3.12+, [uv](https://docs.astral.sh/uv/), a real
-   Chrome/Chromium, and Node.js. Run `uv sync` once.
+   Chrome/Chromium, and Node.js. Run `uv sync` once, then fetch Camoufox's patched
+   Firefox once (needed for the `camoufox` config): `uv run camoufox fetch`.
 2. **tells + BotD server** (`:8901`):
    `( cd src/stealthbench/detectors/assets && npm ci && python3 -m http.server 8901 ) &`
 3. **CreepJS server** (`:8902`):
@@ -161,7 +180,7 @@ steps above.
 ```
 src/stealthbench/
 ├── core/            # BrowserHandle / Config / Detector Protocols + wait_until + BenchResult schema
-├── configs/         # SeleniumHandle + vanilla / stealth / uc  (the ONLY driver-SDK importers)
+├── configs/         # SeleniumHandle + PlaywrightHandle + vanilla / stealth / uc / camoufox  (the ONLY driver-SDK importers)
 ├── detectors/       # tells / botd / creepjs  (+ self-hosted HTML assets)
 ├── runner.py        # run_bench: configs × detectors × trials, error-isolating
 ├── report.py        # summarize() + render_chart() from a results file
@@ -191,8 +210,9 @@ number can be recomputed from the committed data. Results are versioned
 
 ## Roadmap
 
-A stealth-Firefox (Camoufox/Playwright) config arm, more detectors, CI, and packaging
-are planned. The public backlog lands under `docs/plans/`.
+The stealth-Firefox (Camoufox/Playwright) config arm has landed. More detectors, a
+headful CI workflow, and packaging are planned. The public backlog lands under
+`docs/plans/`.
 
 ## Acknowledgements
 

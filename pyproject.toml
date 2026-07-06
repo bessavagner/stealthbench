@@ -13,6 +13,15 @@ dependencies = [
     "setuptools>=69",            # undetected-chromedriver imports pkg_resources
     "pydantic>=2.7",
     "matplotlib>=3.8",
+    # Camoufox is a stealth Firefox; it drives through Playwright's Firefox.
+    "camoufox>=0.4",
+    # Camoufox 0.4.x bundles a Firefox-135 beta juggler. Playwright must be pinned:
+    #   * 1.61+ crashes new_page() — the juggler rejects the viewport.isMobile field.
+    #   * 1.60 crashes the Node driver on ANY uncaught page error / unhandled rejection
+    #     (unguarded coreBundle pageError.location.url), then hangs the client. Detector
+    #     pages run heavy JS, so this is a real risk here.
+    # Empirically clean: 1.55–1.59 (navigator.webdriver stays false). Pin to that range.
+    "playwright>=1.55,<1.60",
 ]
 
 [dependency-groups]
