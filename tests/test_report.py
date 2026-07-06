@@ -48,3 +48,31 @@ def test_render_chart_writes_file(tmp_path):
     out = tmp_path / "pass-rate.png"
     render_chart(_bench(), str(out))
     assert out.exists() and out.stat().st_size > 0
+
+
+def test_summarize_renders_na_for_missing_and_errored_detectors():
+    meta = RunMetadata(
+        timestamp="2026-07-06T10:00:00-03:00", browser="Chrome 149", os="Linux",
+        headful=True, trials=1,
+    )
+    bench = BenchResult(
+        metadata=meta,
+        trials=[
+            Trial(configs=[
+                ConfigResult(
+                    config="only-botd-errored",
+                    results=[
+                        # botd present but errored -> _signal() returns None -> "n/a"
+                        DetectorResult(detector="botd", signals={}, error="boom"),
+                        # tells + creepjs entirely absent -> "n/a"
+                    ],
+                )
+            ])
+        ],
+    )
+
+    md = summarize(bench)
+
+    row = [ln for ln in md.splitlines() if ln.startswith("| only-botd-errored")][0]
+    # tells %, BotD, CreepJS lies all render n/a
+    assert row.count("n/a") == 3

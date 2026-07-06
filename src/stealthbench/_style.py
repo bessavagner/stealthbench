@@ -2,7 +2,7 @@ import matplotlib
 
 matplotlib.use("Agg")  # headless-safe backend for CI
 
-PALETTE = {"passed": "#2e7d32", "caught": "#c62828", "bar": "#37474f"}
+PALETTE = {"passed": "#2e7d32", "caught": "#c62828"}
 
 
 def apply() -> None:
