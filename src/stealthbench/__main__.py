@@ -30,6 +30,21 @@ def _chrome_major() -> int | None:
     return None
 
 
+def _stamp(timestamp: str) -> str:
+    """Filesystem-safe, microsecond-precise stamp from an ISO-8601 timestamp.
+
+    ``2026-07-06T15:52:31.123456+00:00`` -> ``20260706T155231123456``.
+    Timezone offset is dropped; two runs in the same second differ by microseconds.
+    """
+    m = re.match(
+        r"(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.(\d+))?", timestamp
+    )
+    if m is None:  # defensive: fall back to a digits-and-T reduction
+        return re.sub(r"[^0-9T]", "", timestamp.split("+")[0].split("-", 3)[-1])
+    y, mo, d, h, mi, s, frac = m.groups()
+    return f"{y}{mo}{d}T{h}{mi}{s}{frac or ''}"
+
+
 def main() -> None:
     p = argparse.ArgumentParser(prog="stealthbench")
     p.add_argument("--trials", type=int, default=3)
@@ -56,11 +71,12 @@ def main() -> None:
 
     out = Path("results")
     out.mkdir(exist_ok=True)
-    stamp = meta.timestamp.replace(":", "").replace("-", "")[:15]
+    stamp = _stamp(meta.timestamp)
+    summary = summarize(bench)  # computed once, reused for file + print
     (out / f"{stamp}.json").write_text(bench.to_json())
-    (out / "summary.md").write_text(summarize(bench))
+    (out / "summary.md").write_text(summary)
     render_chart(bench, str(out / "pass-rate.png"))
-    print(summarize(bench))
+    print(summary)
     print(f"\nwrote results/{stamp}.json + summary.md + pass-rate.png")
 
 
