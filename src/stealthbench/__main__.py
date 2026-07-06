@@ -39,8 +39,8 @@ def _stamp(timestamp: str) -> str:
     m = re.match(
         r"(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.(\d+))?", timestamp
     )
-    if m is None:  # defensive: fall back to a digits-and-T reduction
-        return re.sub(r"[^0-9T]", "", timestamp.split("+")[0].split("-", 3)[-1])
+    if m is None:
+        raise ValueError(f"unparseable timestamp: {timestamp!r}")
     y, mo, d, h, mi, s, frac = m.groups()
     return f"{y}{mo}{d}T{h}{mi}{s}{frac or ''}"
 

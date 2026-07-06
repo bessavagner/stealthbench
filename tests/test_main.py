@@ -1,3 +1,5 @@
+import pytest
+
 from stealthbench.__main__ import _stamp
 
 
@@ -17,3 +19,8 @@ def test_stamp_disambiguates_two_runs_in_the_same_second():
 def test_stamp_handles_negative_offset_and_missing_micros():
     # tz sign must not leak; a whole-second timestamp still yields digits+T only
     assert _stamp("2026-07-06T15:52:31-03:00") == "20260706T155231"
+
+
+def test_stamp_rejects_unparseable_timestamp():
+    with pytest.raises(ValueError):
+        _stamp("not-a-timestamp")
