@@ -135,6 +135,27 @@ This writes a fresh `results/<timestamp>.json`, a `results/summary.md` table, an
 > Runs are **headful** by design (a headless browser is itself a strong tell). On a
 > headless machine, run behind a virtual display such as `Xvfb`.
 
+## Regenerating the snapshot
+
+The published numbers are reproducible. To regenerate `results/` from scratch:
+
+1. **Prerequisites:** Python 3.12+, [uv](https://docs.astral.sh/uv/), a real
+   Chrome/Chromium, and Node.js. Run `uv sync` once.
+2. **tells + BotD server** (`:8901`):
+   `( cd src/stealthbench/detectors/assets && npm ci && python3 -m http.server 8901 ) &`
+3. **CreepJS server** (`:8902`):
+   `git clone --depth 1 https://github.com/abrahamjuliot/creepjs.git /tmp/creepjs && ( cd /tmp/creepjs/docs && python3 -m http.server 8902 ) &`
+4. **Run the bench (headful):** `uv run python -m stealthbench --trials 3`
+5. **On a headless machine:** the bench is headful by design (a headless browser
+   is itself a strong tell), so it needs a display. Wrap the run instead of
+   trying to force headless: `xvfb-run -a uv run python -m stealthbench --trials 3`.
+6. **Commit the regenerated artifacts** for traceability: the new
+   `results/<timestamp>.json`, `results/summary.md`, and `results/pass-rate.png`.
+
+A headful CI workflow (running this under Xvfb on GitHub-hosted runners) is
+intentionally deferred to a future pull — for now, reproduce locally via the
+steps above.
+
 ## Project layout
 
 ```
