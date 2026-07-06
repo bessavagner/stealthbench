@@ -2,9 +2,8 @@
 
 **A reproducible benchmark that puts _numbers_ on browser-automation stealth.**
 
+![CI](https://github.com/bessavagner/stealthbench/actions/workflows/ci.yml/badge.svg)
 ![Python](https://img.shields.io/badge/python-3.12%2B-blue)
-![Lint](https://img.shields.io/badge/lint-ruff-46a2f1)
-![Tests](https://img.shields.io/badge/tests-14%20passing-brightgreen)
 ![Status](https://img.shields.io/badge/status-snapshot%2C%20not%20a%20guarantee-orange)
 
 stealthbench scores stealth **configs** (how you set up an automated browser) against
