@@ -12,6 +12,7 @@ from stealthbench.configs.stealth import StealthConfig
 from stealthbench.configs.uc import UcConfig
 from stealthbench.configs.vanilla import VanillaConfig
 from stealthbench.core.results import RunMetadata
+from stealthbench.env import capture_components
 from stealthbench.detectors.botd import BotD
 from stealthbench.detectors.creepjs import CreepJS
 from stealthbench.detectors.tells import TellsPanel
@@ -71,6 +72,7 @@ def main() -> None:
         os=platform.platform(),
         headful=True,
         trials=args.trials,
+        components=capture_components(chrome),
     )
 
     bench = run_bench(configs, detectors, meta)

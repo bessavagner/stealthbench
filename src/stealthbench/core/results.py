@@ -13,6 +13,7 @@ class RunMetadata(BaseModel):
     headful: bool
     trials: int
     single_ip_caveat: bool = True
+    components: dict[str, str] = {}
 
 
 class DetectorResult(BaseModel):

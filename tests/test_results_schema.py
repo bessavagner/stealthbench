@@ -43,3 +43,21 @@ def test_json_round_trip():
     restored = BenchResult.from_json(original.to_json())
     assert restored == original
     assert restored.trials[0].configs[0].results[0].signals["total"] == 17
+
+
+def test_components_defaults_to_empty_for_v1():
+    # A v1 metadata payload has no `components` key; it must still validate and default.
+    meta = RunMetadata(
+        timestamp="2026-07-06T10:00:00-03:00", browser="Chrome 149", os="Linux",
+        headful=True, trials=1,
+    )
+    assert meta.components == {}
+
+
+def test_components_round_trips():
+    meta = RunMetadata(
+        timestamp="2026-07-06T10:00:00-03:00", browser="Chrome 149", os="Linux",
+        headful=True, trials=1, components={"chrome": "149", "selenium": "4.45.0"},
+    )
+    restored = RunMetadata.model_validate_json(meta.model_dump_json())
+    assert restored.components == {"chrome": "149", "selenium": "4.45.0"}
