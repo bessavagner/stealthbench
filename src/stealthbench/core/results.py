@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from pydantic import BaseModel
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 
 
 class RunMetadata(BaseModel):
@@ -13,6 +13,7 @@ class RunMetadata(BaseModel):
     headful: bool
     trials: int
     single_ip_caveat: bool = True
+    components: dict[str, str] = {}
 
 
 class DetectorResult(BaseModel):

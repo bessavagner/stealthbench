@@ -12,10 +12,12 @@ from stealthbench.configs.stealth import StealthConfig
 from stealthbench.configs.uc import UcConfig
 from stealthbench.configs.vanilla import VanillaConfig
 from stealthbench.core.results import RunMetadata
+from stealthbench.env import capture_components
 from stealthbench.detectors.botd import BotD
 from stealthbench.detectors.creepjs import CreepJS
 from stealthbench.detectors.tells import TellsPanel
-from stealthbench.report import render_chart, summarize
+from stealthbench.history import load_series
+from stealthbench.report import render_chart, render_trend, summarize
 from stealthbench.runner import run_bench
 
 
@@ -71,6 +73,7 @@ def main() -> None:
         os=platform.platform(),
         headful=True,
         trials=args.trials,
+        components=capture_components(chrome),
     )
 
     bench = run_bench(configs, detectors, meta)
@@ -82,8 +85,9 @@ def main() -> None:
     (out / f"{stamp}.json").write_text(bench.to_json())
     (out / "summary.md").write_text(summary)
     render_chart(bench, str(out / "pass-rate.png"))
+    render_trend(load_series(out), str(out / "trend.png"))
     print(summary)
-    print(f"\nwrote results/{stamp}.json + summary.md + pass-rate.png")
+    print(f"\nwrote results/{stamp}.json + summary.md + pass-rate.png + trend.png")
 
 
 if __name__ == "__main__":
