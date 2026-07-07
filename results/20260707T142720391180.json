@@ -1,0 +1,3311 @@
+{
+  "metadata": {
+    "schema_version": 2,
+    "timestamp": "2026-07-07T14:27:20.391180+00:00",
+    "browser": "Chrome 149 + Camoufox",
+    "os": "Linux-6.17.0-35-generic-x86_64-with-glibc2.39",
+    "headful": true,
+    "trials": 10,
+    "single_ip_caveat": true,
+    "components": {
+      "chrome": "149",
+      "selenium": "4.45.0",
+      "selenium-stealth": "1.0.6",
+      "undetected-chromedriver": "3.5.5",
+      "playwright": "1.59.0",
+      "camoufox": "0.4.11"
+    }
+  },
+  "trials": [
+    {
+      "configs": [
+        {
+          "config": "vanilla",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "chrome_object_present": true,
+                  "connection_rtt_ok": true,
+                  "error_stack_clean": true,
+                  "eval_length_33": true,
+                  "function_bind_native": true,
+                  "languages_nonempty": true,
+                  "mimetypes_nonzero": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": false,
+                  "permissions_consistent": true,
+                  "plugins_nonzero": true,
+                  "productsub_ok": true,
+                  "ua_no_headless": true,
+                  "webdriver_false": false,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "window_outer_nonzero": true
+                },
+                "passed": 15,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": true,
+                "kind": "selenium"
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 16,
+                "failed": 2,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 1
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "selenium-stealth",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "chrome_object_present": true,
+                  "connection_rtt_ok": true,
+                  "error_stack_clean": true,
+                  "eval_length_33": true,
+                  "function_bind_native": true,
+                  "languages_nonempty": true,
+                  "mimetypes_nonzero": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": false,
+                  "permissions_consistent": true,
+                  "plugins_nonzero": true,
+                  "productsub_ok": true,
+                  "ua_no_headless": true,
+                  "webdriver_false": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "window_outer_nonzero": true
+                },
+                "passed": 16,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": true,
+                "kind": "selenium"
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 16,
+                "failed": 2,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 1
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 2
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "undetected-chromedriver",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "chrome_object_present": true,
+                  "connection_rtt_ok": true,
+                  "error_stack_clean": true,
+                  "eval_length_33": true,
+                  "function_bind_native": true,
+                  "languages_nonempty": true,
+                  "mimetypes_nonzero": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": true,
+                  "permissions_consistent": true,
+                  "plugins_nonzero": true,
+                  "productsub_ok": true,
+                  "ua_no_headless": true,
+                  "webdriver_false": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "window_outer_nonzero": false
+                },
+                "passed": 16,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": false,
+                "kind": ""
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 18,
+                "failed": 0,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 0
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "camoufox",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "webdriver_false": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": true,
+                  "chrome_object_present": false,
+                  "plugins_nonzero": true,
+                  "mimetypes_nonzero": true,
+                  "languages_nonempty": true,
+                  "ua_no_headless": true,
+                  "productsub_ok": false,
+                  "window_outer_nonzero": true,
+                  "function_bind_native": true,
+                  "eval_length_33": false,
+                  "error_stack_clean": true,
+                  "connection_rtt_ok": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "permissions_consistent": true
+                },
+                "passed": 14,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": false,
+                "kind": ""
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 17,
+                "failed": 1,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 8,
+                "tests_failed": 0
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "nodriver",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "webdriver_false": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": true,
+                  "chrome_object_present": true,
+                  "plugins_nonzero": true,
+                  "mimetypes_nonzero": true,
+                  "languages_nonempty": true,
+                  "ua_no_headless": true,
+                  "productsub_ok": true,
+                  "window_outer_nonzero": false,
+                  "function_bind_native": true,
+                  "eval_length_33": true,
+                  "error_stack_clean": true,
+                  "connection_rtt_ok": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "permissions_consistent": true
+                },
+                "passed": 16,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": false,
+                "kind": ""
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 18,
+                "failed": 0,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 0
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        }
+      ]
+    },
+    {
+      "configs": [
+        {
+          "config": "vanilla",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "chrome_object_present": true,
+                  "connection_rtt_ok": true,
+                  "error_stack_clean": true,
+                  "eval_length_33": true,
+                  "function_bind_native": true,
+                  "languages_nonempty": true,
+                  "mimetypes_nonzero": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": false,
+                  "permissions_consistent": true,
+                  "plugins_nonzero": true,
+                  "productsub_ok": true,
+                  "ua_no_headless": true,
+                  "webdriver_false": false,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "window_outer_nonzero": false
+                },
+                "passed": 14,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": true,
+                "kind": "selenium"
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 16,
+                "failed": 2,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 1
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "selenium-stealth",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "chrome_object_present": true,
+                  "connection_rtt_ok": true,
+                  "error_stack_clean": true,
+                  "eval_length_33": true,
+                  "function_bind_native": true,
+                  "languages_nonempty": true,
+                  "mimetypes_nonzero": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": false,
+                  "permissions_consistent": true,
+                  "plugins_nonzero": true,
+                  "productsub_ok": true,
+                  "ua_no_headless": true,
+                  "webdriver_false": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "window_outer_nonzero": true
+                },
+                "passed": 16,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": true,
+                "kind": "selenium"
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 16,
+                "failed": 2,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 1
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 2
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "undetected-chromedriver",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "chrome_object_present": true,
+                  "connection_rtt_ok": true,
+                  "error_stack_clean": true,
+                  "eval_length_33": true,
+                  "function_bind_native": true,
+                  "languages_nonempty": true,
+                  "mimetypes_nonzero": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": true,
+                  "permissions_consistent": true,
+                  "plugins_nonzero": true,
+                  "productsub_ok": true,
+                  "ua_no_headless": true,
+                  "webdriver_false": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "window_outer_nonzero": false
+                },
+                "passed": 16,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": false,
+                "kind": ""
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 18,
+                "failed": 0,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 0
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "camoufox",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "webdriver_false": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": true,
+                  "chrome_object_present": false,
+                  "plugins_nonzero": true,
+                  "mimetypes_nonzero": true,
+                  "languages_nonempty": true,
+                  "ua_no_headless": true,
+                  "productsub_ok": false,
+                  "window_outer_nonzero": true,
+                  "function_bind_native": true,
+                  "eval_length_33": false,
+                  "error_stack_clean": true,
+                  "connection_rtt_ok": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "permissions_consistent": true
+                },
+                "passed": 14,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": false,
+                "kind": ""
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 17,
+                "failed": 1,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 9,
+                "tests_failed": 0
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "nodriver",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "webdriver_false": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": true,
+                  "chrome_object_present": true,
+                  "plugins_nonzero": true,
+                  "mimetypes_nonzero": true,
+                  "languages_nonempty": true,
+                  "ua_no_headless": true,
+                  "productsub_ok": true,
+                  "window_outer_nonzero": false,
+                  "function_bind_native": true,
+                  "eval_length_33": true,
+                  "error_stack_clean": true,
+                  "connection_rtt_ok": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "permissions_consistent": true
+                },
+                "passed": 16,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": false,
+                "kind": ""
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 18,
+                "failed": 0,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 0
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        }
+      ]
+    },
+    {
+      "configs": [
+        {
+          "config": "vanilla",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "chrome_object_present": true,
+                  "connection_rtt_ok": true,
+                  "error_stack_clean": true,
+                  "eval_length_33": true,
+                  "function_bind_native": true,
+                  "languages_nonempty": true,
+                  "mimetypes_nonzero": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": false,
+                  "permissions_consistent": true,
+                  "plugins_nonzero": true,
+                  "productsub_ok": true,
+                  "ua_no_headless": true,
+                  "webdriver_false": false,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "window_outer_nonzero": false
+                },
+                "passed": 14,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": true,
+                "kind": "selenium"
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 16,
+                "failed": 2,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 1
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "selenium-stealth",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "chrome_object_present": true,
+                  "connection_rtt_ok": true,
+                  "error_stack_clean": true,
+                  "eval_length_33": true,
+                  "function_bind_native": true,
+                  "languages_nonempty": true,
+                  "mimetypes_nonzero": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": false,
+                  "permissions_consistent": true,
+                  "plugins_nonzero": true,
+                  "productsub_ok": true,
+                  "ua_no_headless": true,
+                  "webdriver_false": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "window_outer_nonzero": true
+                },
+                "passed": 16,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": true,
+                "kind": "selenium"
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 16,
+                "failed": 2,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 1
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 2
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "undetected-chromedriver",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "chrome_object_present": true,
+                  "connection_rtt_ok": true,
+                  "error_stack_clean": true,
+                  "eval_length_33": true,
+                  "function_bind_native": true,
+                  "languages_nonempty": true,
+                  "mimetypes_nonzero": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": true,
+                  "permissions_consistent": true,
+                  "plugins_nonzero": true,
+                  "productsub_ok": true,
+                  "ua_no_headless": true,
+                  "webdriver_false": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "window_outer_nonzero": false
+                },
+                "passed": 16,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": false,
+                "kind": ""
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 18,
+                "failed": 0,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 0
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "camoufox",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "webdriver_false": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": true,
+                  "chrome_object_present": false,
+                  "plugins_nonzero": true,
+                  "mimetypes_nonzero": true,
+                  "languages_nonempty": true,
+                  "ua_no_headless": true,
+                  "productsub_ok": false,
+                  "window_outer_nonzero": true,
+                  "function_bind_native": true,
+                  "eval_length_33": false,
+                  "error_stack_clean": true,
+                  "connection_rtt_ok": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "permissions_consistent": true
+                },
+                "passed": 14,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": false,
+                "kind": ""
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 17,
+                "failed": 1,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 9,
+                "tests_failed": 0
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "nodriver",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "webdriver_false": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": true,
+                  "chrome_object_present": true,
+                  "plugins_nonzero": true,
+                  "mimetypes_nonzero": true,
+                  "languages_nonempty": true,
+                  "ua_no_headless": true,
+                  "productsub_ok": true,
+                  "window_outer_nonzero": false,
+                  "function_bind_native": true,
+                  "eval_length_33": true,
+                  "error_stack_clean": true,
+                  "connection_rtt_ok": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "permissions_consistent": true
+                },
+                "passed": 16,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": false,
+                "kind": ""
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 18,
+                "failed": 0,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 0
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        }
+      ]
+    },
+    {
+      "configs": [
+        {
+          "config": "vanilla",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "chrome_object_present": true,
+                  "connection_rtt_ok": true,
+                  "error_stack_clean": true,
+                  "eval_length_33": true,
+                  "function_bind_native": true,
+                  "languages_nonempty": true,
+                  "mimetypes_nonzero": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": false,
+                  "permissions_consistent": true,
+                  "plugins_nonzero": true,
+                  "productsub_ok": true,
+                  "ua_no_headless": true,
+                  "webdriver_false": false,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "window_outer_nonzero": false
+                },
+                "passed": 14,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": true,
+                "kind": "selenium"
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 16,
+                "failed": 2,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 1
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "selenium-stealth",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "chrome_object_present": true,
+                  "connection_rtt_ok": true,
+                  "error_stack_clean": true,
+                  "eval_length_33": true,
+                  "function_bind_native": true,
+                  "languages_nonempty": true,
+                  "mimetypes_nonzero": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": false,
+                  "permissions_consistent": true,
+                  "plugins_nonzero": true,
+                  "productsub_ok": true,
+                  "ua_no_headless": true,
+                  "webdriver_false": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "window_outer_nonzero": true
+                },
+                "passed": 16,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": true,
+                "kind": "selenium"
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 16,
+                "failed": 2,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 1
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 2
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "undetected-chromedriver",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "chrome_object_present": true,
+                  "connection_rtt_ok": true,
+                  "error_stack_clean": true,
+                  "eval_length_33": true,
+                  "function_bind_native": true,
+                  "languages_nonempty": true,
+                  "mimetypes_nonzero": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": true,
+                  "permissions_consistent": true,
+                  "plugins_nonzero": true,
+                  "productsub_ok": true,
+                  "ua_no_headless": true,
+                  "webdriver_false": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "window_outer_nonzero": false
+                },
+                "passed": 16,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": false,
+                "kind": ""
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 18,
+                "failed": 0,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 0
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "camoufox",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "webdriver_false": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": true,
+                  "chrome_object_present": false,
+                  "plugins_nonzero": true,
+                  "mimetypes_nonzero": true,
+                  "languages_nonempty": true,
+                  "ua_no_headless": true,
+                  "productsub_ok": false,
+                  "window_outer_nonzero": true,
+                  "function_bind_native": true,
+                  "eval_length_33": false,
+                  "error_stack_clean": true,
+                  "connection_rtt_ok": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "permissions_consistent": true
+                },
+                "passed": 14,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": false,
+                "kind": ""
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 17,
+                "failed": 1,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 9,
+                "tests_failed": 0
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "nodriver",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "webdriver_false": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": true,
+                  "chrome_object_present": true,
+                  "plugins_nonzero": true,
+                  "mimetypes_nonzero": true,
+                  "languages_nonempty": true,
+                  "ua_no_headless": true,
+                  "productsub_ok": true,
+                  "window_outer_nonzero": false,
+                  "function_bind_native": true,
+                  "eval_length_33": true,
+                  "error_stack_clean": true,
+                  "connection_rtt_ok": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "permissions_consistent": true
+                },
+                "passed": 16,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": false,
+                "kind": ""
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 18,
+                "failed": 0,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 0
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        }
+      ]
+    },
+    {
+      "configs": [
+        {
+          "config": "vanilla",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "chrome_object_present": true,
+                  "connection_rtt_ok": true,
+                  "error_stack_clean": true,
+                  "eval_length_33": true,
+                  "function_bind_native": true,
+                  "languages_nonempty": true,
+                  "mimetypes_nonzero": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": false,
+                  "permissions_consistent": true,
+                  "plugins_nonzero": true,
+                  "productsub_ok": true,
+                  "ua_no_headless": true,
+                  "webdriver_false": false,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "window_outer_nonzero": false
+                },
+                "passed": 14,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": true,
+                "kind": "selenium"
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 16,
+                "failed": 2,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 1
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "selenium-stealth",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "chrome_object_present": true,
+                  "connection_rtt_ok": true,
+                  "error_stack_clean": true,
+                  "eval_length_33": true,
+                  "function_bind_native": true,
+                  "languages_nonempty": true,
+                  "mimetypes_nonzero": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": false,
+                  "permissions_consistent": true,
+                  "plugins_nonzero": true,
+                  "productsub_ok": true,
+                  "ua_no_headless": true,
+                  "webdriver_false": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "window_outer_nonzero": true
+                },
+                "passed": 16,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": true,
+                "kind": "selenium"
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 16,
+                "failed": 2,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 1
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 2
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "undetected-chromedriver",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "chrome_object_present": true,
+                  "connection_rtt_ok": true,
+                  "error_stack_clean": true,
+                  "eval_length_33": true,
+                  "function_bind_native": true,
+                  "languages_nonempty": true,
+                  "mimetypes_nonzero": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": true,
+                  "permissions_consistent": true,
+                  "plugins_nonzero": true,
+                  "productsub_ok": true,
+                  "ua_no_headless": true,
+                  "webdriver_false": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "window_outer_nonzero": false
+                },
+                "passed": 16,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": false,
+                "kind": ""
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 18,
+                "failed": 0,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 0
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "camoufox",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "webdriver_false": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": true,
+                  "chrome_object_present": false,
+                  "plugins_nonzero": true,
+                  "mimetypes_nonzero": true,
+                  "languages_nonempty": true,
+                  "ua_no_headless": true,
+                  "productsub_ok": false,
+                  "window_outer_nonzero": true,
+                  "function_bind_native": true,
+                  "eval_length_33": false,
+                  "error_stack_clean": true,
+                  "connection_rtt_ok": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "permissions_consistent": true
+                },
+                "passed": 14,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": false,
+                "kind": ""
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 17,
+                "failed": 1,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 9,
+                "tests_failed": 0
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "nodriver",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "webdriver_false": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": true,
+                  "chrome_object_present": true,
+                  "plugins_nonzero": true,
+                  "mimetypes_nonzero": true,
+                  "languages_nonempty": true,
+                  "ua_no_headless": true,
+                  "productsub_ok": true,
+                  "window_outer_nonzero": false,
+                  "function_bind_native": true,
+                  "eval_length_33": true,
+                  "error_stack_clean": true,
+                  "connection_rtt_ok": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "permissions_consistent": true
+                },
+                "passed": 16,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": false,
+                "kind": ""
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 18,
+                "failed": 0,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 0
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        }
+      ]
+    },
+    {
+      "configs": [
+        {
+          "config": "vanilla",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "chrome_object_present": true,
+                  "connection_rtt_ok": true,
+                  "error_stack_clean": true,
+                  "eval_length_33": true,
+                  "function_bind_native": true,
+                  "languages_nonempty": true,
+                  "mimetypes_nonzero": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": false,
+                  "permissions_consistent": true,
+                  "plugins_nonzero": true,
+                  "productsub_ok": true,
+                  "ua_no_headless": true,
+                  "webdriver_false": false,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "window_outer_nonzero": false
+                },
+                "passed": 14,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": true,
+                "kind": "selenium"
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 16,
+                "failed": 2,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 1
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "selenium-stealth",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "chrome_object_present": true,
+                  "connection_rtt_ok": true,
+                  "error_stack_clean": true,
+                  "eval_length_33": true,
+                  "function_bind_native": true,
+                  "languages_nonempty": true,
+                  "mimetypes_nonzero": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": false,
+                  "permissions_consistent": true,
+                  "plugins_nonzero": true,
+                  "productsub_ok": true,
+                  "ua_no_headless": true,
+                  "webdriver_false": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "window_outer_nonzero": true
+                },
+                "passed": 16,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": true,
+                "kind": "selenium"
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 16,
+                "failed": 2,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 1
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 2
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "undetected-chromedriver",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "chrome_object_present": true,
+                  "connection_rtt_ok": true,
+                  "error_stack_clean": true,
+                  "eval_length_33": true,
+                  "function_bind_native": true,
+                  "languages_nonempty": true,
+                  "mimetypes_nonzero": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": true,
+                  "permissions_consistent": true,
+                  "plugins_nonzero": true,
+                  "productsub_ok": true,
+                  "ua_no_headless": true,
+                  "webdriver_false": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "window_outer_nonzero": false
+                },
+                "passed": 16,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": false,
+                "kind": ""
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 18,
+                "failed": 0,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 0
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "camoufox",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "webdriver_false": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": true,
+                  "chrome_object_present": false,
+                  "plugins_nonzero": true,
+                  "mimetypes_nonzero": true,
+                  "languages_nonempty": true,
+                  "ua_no_headless": true,
+                  "productsub_ok": false,
+                  "window_outer_nonzero": true,
+                  "function_bind_native": true,
+                  "eval_length_33": false,
+                  "error_stack_clean": true,
+                  "connection_rtt_ok": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "permissions_consistent": true
+                },
+                "passed": 14,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": false,
+                "kind": ""
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 17,
+                "failed": 1,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 9,
+                "tests_failed": 0
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "nodriver",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "webdriver_false": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": true,
+                  "chrome_object_present": true,
+                  "plugins_nonzero": true,
+                  "mimetypes_nonzero": true,
+                  "languages_nonempty": true,
+                  "ua_no_headless": true,
+                  "productsub_ok": true,
+                  "window_outer_nonzero": true,
+                  "function_bind_native": true,
+                  "eval_length_33": true,
+                  "error_stack_clean": true,
+                  "connection_rtt_ok": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "permissions_consistent": true
+                },
+                "passed": 17,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": false,
+                "kind": ""
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 18,
+                "failed": 0,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 0
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        }
+      ]
+    },
+    {
+      "configs": [
+        {
+          "config": "vanilla",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "chrome_object_present": true,
+                  "connection_rtt_ok": true,
+                  "error_stack_clean": true,
+                  "eval_length_33": true,
+                  "function_bind_native": true,
+                  "languages_nonempty": true,
+                  "mimetypes_nonzero": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": false,
+                  "permissions_consistent": true,
+                  "plugins_nonzero": true,
+                  "productsub_ok": true,
+                  "ua_no_headless": true,
+                  "webdriver_false": false,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "window_outer_nonzero": true
+                },
+                "passed": 15,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": true,
+                "kind": "selenium"
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 16,
+                "failed": 2,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 1
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "selenium-stealth",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "chrome_object_present": true,
+                  "connection_rtt_ok": true,
+                  "error_stack_clean": true,
+                  "eval_length_33": true,
+                  "function_bind_native": true,
+                  "languages_nonempty": true,
+                  "mimetypes_nonzero": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": false,
+                  "permissions_consistent": true,
+                  "plugins_nonzero": true,
+                  "productsub_ok": true,
+                  "ua_no_headless": true,
+                  "webdriver_false": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "window_outer_nonzero": true
+                },
+                "passed": 16,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": true,
+                "kind": "selenium"
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 16,
+                "failed": 2,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 1
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 2
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "undetected-chromedriver",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "chrome_object_present": true,
+                  "connection_rtt_ok": true,
+                  "error_stack_clean": true,
+                  "eval_length_33": true,
+                  "function_bind_native": true,
+                  "languages_nonempty": true,
+                  "mimetypes_nonzero": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": true,
+                  "permissions_consistent": true,
+                  "plugins_nonzero": true,
+                  "productsub_ok": true,
+                  "ua_no_headless": true,
+                  "webdriver_false": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "window_outer_nonzero": false
+                },
+                "passed": 16,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": false,
+                "kind": ""
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 18,
+                "failed": 0,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 0
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "camoufox",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "webdriver_false": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": true,
+                  "chrome_object_present": false,
+                  "plugins_nonzero": true,
+                  "mimetypes_nonzero": true,
+                  "languages_nonempty": true,
+                  "ua_no_headless": true,
+                  "productsub_ok": false,
+                  "window_outer_nonzero": true,
+                  "function_bind_native": true,
+                  "eval_length_33": false,
+                  "error_stack_clean": true,
+                  "connection_rtt_ok": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "permissions_consistent": true
+                },
+                "passed": 14,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": false,
+                "kind": ""
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 17,
+                "failed": 1,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 9,
+                "tests_failed": 0
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "nodriver",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "webdriver_false": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": true,
+                  "chrome_object_present": true,
+                  "plugins_nonzero": true,
+                  "mimetypes_nonzero": true,
+                  "languages_nonempty": true,
+                  "ua_no_headless": true,
+                  "productsub_ok": true,
+                  "window_outer_nonzero": false,
+                  "function_bind_native": true,
+                  "eval_length_33": true,
+                  "error_stack_clean": true,
+                  "connection_rtt_ok": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "permissions_consistent": true
+                },
+                "passed": 16,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": false,
+                "kind": ""
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 18,
+                "failed": 0,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 0
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        }
+      ]
+    },
+    {
+      "configs": [
+        {
+          "config": "vanilla",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "chrome_object_present": true,
+                  "connection_rtt_ok": true,
+                  "error_stack_clean": true,
+                  "eval_length_33": true,
+                  "function_bind_native": true,
+                  "languages_nonempty": true,
+                  "mimetypes_nonzero": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": false,
+                  "permissions_consistent": true,
+                  "plugins_nonzero": true,
+                  "productsub_ok": true,
+                  "ua_no_headless": true,
+                  "webdriver_false": false,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "window_outer_nonzero": false
+                },
+                "passed": 14,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": true,
+                "kind": "selenium"
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 16,
+                "failed": 2,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 1
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "selenium-stealth",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "chrome_object_present": true,
+                  "connection_rtt_ok": true,
+                  "error_stack_clean": true,
+                  "eval_length_33": true,
+                  "function_bind_native": true,
+                  "languages_nonempty": true,
+                  "mimetypes_nonzero": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": false,
+                  "permissions_consistent": true,
+                  "plugins_nonzero": true,
+                  "productsub_ok": true,
+                  "ua_no_headless": true,
+                  "webdriver_false": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "window_outer_nonzero": true
+                },
+                "passed": 16,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": true,
+                "kind": "selenium"
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 16,
+                "failed": 2,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 1
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 2
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "undetected-chromedriver",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "chrome_object_present": true,
+                  "connection_rtt_ok": true,
+                  "error_stack_clean": true,
+                  "eval_length_33": true,
+                  "function_bind_native": true,
+                  "languages_nonempty": true,
+                  "mimetypes_nonzero": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": true,
+                  "permissions_consistent": true,
+                  "plugins_nonzero": true,
+                  "productsub_ok": true,
+                  "ua_no_headless": true,
+                  "webdriver_false": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "window_outer_nonzero": false
+                },
+                "passed": 16,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": false,
+                "kind": ""
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 18,
+                "failed": 0,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 0
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "camoufox",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "webdriver_false": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": true,
+                  "chrome_object_present": false,
+                  "plugins_nonzero": true,
+                  "mimetypes_nonzero": true,
+                  "languages_nonempty": true,
+                  "ua_no_headless": true,
+                  "productsub_ok": false,
+                  "window_outer_nonzero": true,
+                  "function_bind_native": true,
+                  "eval_length_33": false,
+                  "error_stack_clean": true,
+                  "connection_rtt_ok": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "permissions_consistent": true
+                },
+                "passed": 14,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": false,
+                "kind": ""
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 17,
+                "failed": 1,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 9,
+                "tests_failed": 0
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "nodriver",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "webdriver_false": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": true,
+                  "chrome_object_present": true,
+                  "plugins_nonzero": true,
+                  "mimetypes_nonzero": true,
+                  "languages_nonempty": true,
+                  "ua_no_headless": true,
+                  "productsub_ok": true,
+                  "window_outer_nonzero": false,
+                  "function_bind_native": true,
+                  "eval_length_33": true,
+                  "error_stack_clean": true,
+                  "connection_rtt_ok": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "permissions_consistent": true
+                },
+                "passed": 16,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": false,
+                "kind": ""
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 18,
+                "failed": 0,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 0
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        }
+      ]
+    },
+    {
+      "configs": [
+        {
+          "config": "vanilla",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "chrome_object_present": true,
+                  "connection_rtt_ok": true,
+                  "error_stack_clean": true,
+                  "eval_length_33": true,
+                  "function_bind_native": true,
+                  "languages_nonempty": true,
+                  "mimetypes_nonzero": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": false,
+                  "permissions_consistent": true,
+                  "plugins_nonzero": true,
+                  "productsub_ok": true,
+                  "ua_no_headless": true,
+                  "webdriver_false": false,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "window_outer_nonzero": false
+                },
+                "passed": 14,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": true,
+                "kind": "selenium"
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 16,
+                "failed": 2,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 1
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "selenium-stealth",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "chrome_object_present": true,
+                  "connection_rtt_ok": true,
+                  "error_stack_clean": true,
+                  "eval_length_33": true,
+                  "function_bind_native": true,
+                  "languages_nonempty": true,
+                  "mimetypes_nonzero": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": false,
+                  "permissions_consistent": true,
+                  "plugins_nonzero": true,
+                  "productsub_ok": true,
+                  "ua_no_headless": true,
+                  "webdriver_false": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "window_outer_nonzero": true
+                },
+                "passed": 16,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": true,
+                "kind": "selenium"
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 16,
+                "failed": 2,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 1
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 2
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "undetected-chromedriver",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "chrome_object_present": true,
+                  "connection_rtt_ok": true,
+                  "error_stack_clean": true,
+                  "eval_length_33": true,
+                  "function_bind_native": true,
+                  "languages_nonempty": true,
+                  "mimetypes_nonzero": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": true,
+                  "permissions_consistent": true,
+                  "plugins_nonzero": true,
+                  "productsub_ok": true,
+                  "ua_no_headless": true,
+                  "webdriver_false": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "window_outer_nonzero": false
+                },
+                "passed": 16,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": false,
+                "kind": ""
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 18,
+                "failed": 0,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 0
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "camoufox",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "webdriver_false": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": true,
+                  "chrome_object_present": false,
+                  "plugins_nonzero": true,
+                  "mimetypes_nonzero": true,
+                  "languages_nonempty": true,
+                  "ua_no_headless": true,
+                  "productsub_ok": false,
+                  "window_outer_nonzero": true,
+                  "function_bind_native": true,
+                  "eval_length_33": false,
+                  "error_stack_clean": true,
+                  "connection_rtt_ok": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "permissions_consistent": true
+                },
+                "passed": 14,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": false,
+                "kind": ""
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 17,
+                "failed": 1,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 9,
+                "tests_failed": 0
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "nodriver",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "webdriver_false": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": true,
+                  "chrome_object_present": true,
+                  "plugins_nonzero": true,
+                  "mimetypes_nonzero": true,
+                  "languages_nonempty": true,
+                  "ua_no_headless": true,
+                  "productsub_ok": true,
+                  "window_outer_nonzero": false,
+                  "function_bind_native": true,
+                  "eval_length_33": true,
+                  "error_stack_clean": true,
+                  "connection_rtt_ok": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "permissions_consistent": true
+                },
+                "passed": 16,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": false,
+                "kind": ""
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 18,
+                "failed": 0,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 0
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        }
+      ]
+    },
+    {
+      "configs": [
+        {
+          "config": "vanilla",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "chrome_object_present": true,
+                  "connection_rtt_ok": true,
+                  "error_stack_clean": true,
+                  "eval_length_33": true,
+                  "function_bind_native": true,
+                  "languages_nonempty": true,
+                  "mimetypes_nonzero": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": false,
+                  "permissions_consistent": true,
+                  "plugins_nonzero": true,
+                  "productsub_ok": true,
+                  "ua_no_headless": true,
+                  "webdriver_false": false,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "window_outer_nonzero": false
+                },
+                "passed": 14,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": true,
+                "kind": "selenium"
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 16,
+                "failed": 2,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 1
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "selenium-stealth",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "chrome_object_present": true,
+                  "connection_rtt_ok": true,
+                  "error_stack_clean": true,
+                  "eval_length_33": true,
+                  "function_bind_native": true,
+                  "languages_nonempty": true,
+                  "mimetypes_nonzero": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": false,
+                  "permissions_consistent": true,
+                  "plugins_nonzero": true,
+                  "productsub_ok": true,
+                  "ua_no_headless": true,
+                  "webdriver_false": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "window_outer_nonzero": true
+                },
+                "passed": 16,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": true,
+                "kind": "selenium"
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 16,
+                "failed": 2,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 1
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 2
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "undetected-chromedriver",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "chrome_object_present": true,
+                  "connection_rtt_ok": true,
+                  "error_stack_clean": true,
+                  "eval_length_33": true,
+                  "function_bind_native": true,
+                  "languages_nonempty": true,
+                  "mimetypes_nonzero": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": true,
+                  "permissions_consistent": true,
+                  "plugins_nonzero": true,
+                  "productsub_ok": true,
+                  "ua_no_headless": true,
+                  "webdriver_false": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "window_outer_nonzero": false
+                },
+                "passed": 16,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": false,
+                "kind": ""
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 18,
+                "failed": 0,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 0
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "camoufox",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "webdriver_false": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": true,
+                  "chrome_object_present": false,
+                  "plugins_nonzero": true,
+                  "mimetypes_nonzero": true,
+                  "languages_nonempty": true,
+                  "ua_no_headless": true,
+                  "productsub_ok": false,
+                  "window_outer_nonzero": true,
+                  "function_bind_native": true,
+                  "eval_length_33": false,
+                  "error_stack_clean": true,
+                  "connection_rtt_ok": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "permissions_consistent": true
+                },
+                "passed": 14,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": false,
+                "kind": ""
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 17,
+                "failed": 1,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 9,
+                "tests_failed": 0
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        },
+        {
+          "config": "nodriver",
+          "results": [
+            {
+              "detector": "tells",
+              "signals": {
+                "checks": {
+                  "webdriver_false": true,
+                  "no_cdc_document_props": true,
+                  "no_cdc_window_props": true,
+                  "chrome_object_present": true,
+                  "plugins_nonzero": true,
+                  "mimetypes_nonzero": true,
+                  "languages_nonempty": true,
+                  "ua_no_headless": true,
+                  "productsub_ok": true,
+                  "window_outer_nonzero": false,
+                  "function_bind_native": true,
+                  "eval_length_33": true,
+                  "error_stack_clean": true,
+                  "connection_rtt_ok": true,
+                  "webgl_hardware": true,
+                  "webgl_vendor_present": true,
+                  "permissions_consistent": true
+                },
+                "passed": 16,
+                "total": 17
+              },
+              "error": null
+            },
+            {
+              "detector": "botd",
+              "signals": {
+                "bot": false,
+                "kind": ""
+              },
+              "error": null
+            },
+            {
+              "detector": "sannysoft",
+              "signals": {
+                "passed": 18,
+                "failed": 0,
+                "total": 18
+              },
+              "error": null
+            },
+            {
+              "detector": "rebrowser",
+              "signals": {
+                "tests_total": 10,
+                "tests_failed": 0
+              },
+              "error": null
+            },
+            {
+              "detector": "creepjs",
+              "signals": {
+                "lies": 0
+              },
+              "error": null
+            }
+          ],
+          "error": null
+        }
+      ]
+    }
+  ]
+}

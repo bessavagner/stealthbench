@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <!-- [stealthbench offline patch] Self-only CSP: the upstream page allowed remote hosts
+             (cloudflareinsights). This vendored, offline build contacts NO remote host. -->
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: blob: 'unsafe-inline'; script-src 'self' blob: 'unsafe-inline';" />
+        <title>rebrowser-bot-detector</title>
+        <meta name="description" content="Modern tests for browser automation leaks (Puppeteer/Playwright/CDP)." />
+        <!--
+          Vendored rebrowser-bot-detector panel (self-hosted, offline). Surface: CDP / Puppeteer /
+          Playwright RUNTIME LEAKS (runtimeEnableLeak, pwInitScripts, exposeFunctionLeak,
+          mainWorldExecution, sourceUrlLeak, navigatorWebdriver, viewport, useragent, bypassCsp).
+
+          Result model (consumed by detectors/rebrowser.py): each test calls addDetection() into the
+          global `window.detections` array; each entry has a numeric `.rating`:
+            rating >= 1  → 🔴 automation/leak DETECTED (a "failed" test)
+            rating <  0  → 🟢 clean
+            rating 0/0.5 → ⚪️/🟡 neutral/warning (often needs driver-side triggering)
+          Readiness: window.__REBROWSER_DONE__ === true (set ~1200ms after init; offline-build patch).
+          The detector reduces window.detections to integer counts {total, failed} in-browser
+          (failed = count of rating >= 1) — no note/debug text ever returns to Python.
+
+          Panel logic + attribution + offline patches: ./rebrowser/index.js (MIT; see ./rebrowser/LICENSE
+          and ./rebrowser/NOTICE).
+        -->
+        <script src="./rebrowser/index.js"></script>
+        <link rel="stylesheet" href="./rebrowser/index.css" />
+    </head>
+    <body>
+        <h1>🕵️ rebrowser-bot-detector</h1>
+        <div class="text-secondary">Modern tests to detect automated browser behavior. <span onclick="toggleHowTo();" class="text-secondary dashed cursor-pointer">How to properly run the tests?</span></div>
+        <div id="how-to-run-test" class="d-none">
+            <p>These tests are designed for Chromium based browsers only. Some tests require the automation
+            script to trigger them (see the upstream README vendored alongside this bundle).</p>
+        </div>
+
+        <table id="detections-table">
+            <thead>
+                <tr>
+                    <th>Test name</th>
+                    <th>Time since load</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <h3>JSON</h3>
+        <textarea id="detections-json"></textarea>
+    </body>
+</html>
