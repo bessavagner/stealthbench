@@ -15,6 +15,7 @@ from stealthbench.core.results import RunMetadata
 from stealthbench.env import capture_components
 from stealthbench.detectors.botd import BotD
 from stealthbench.detectors.creepjs import CreepJS
+from stealthbench.detectors.sannysoft import Sannysoft
 from stealthbench.detectors.tells import TellsPanel
 from stealthbench.history import load_series
 from stealthbench.report import render_chart, render_trend, summarize
@@ -65,6 +66,7 @@ def main() -> None:
     detectors = [
         TellsPanel(args.detector_host),
         BotD(args.detector_host),
+        Sannysoft(args.detector_host),
         CreepJS(args.creep_host),
     ]
     meta = RunMetadata(
