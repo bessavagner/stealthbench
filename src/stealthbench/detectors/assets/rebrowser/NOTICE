@@ -1,0 +1,31 @@
+rebrowser-bot-detector — vendored, self-hosted, OFFLINE build
+=============================================================
+
+Upstream: https://github.com/rebrowser/rebrowser-bot-detector  (MIT, see ./LICENSE)
+Vendored files: index.js, index.css (the panel), plus rebrowser.html (this repo's host page,
+one directory up), and UPSTREAM-README.md (the upstream README, unmodified, for reference).
+
+This benchmark runs the panel fully offline on localhost and must NEVER contact a remote
+host. The upstream index.js makes two network calls and the upstream page allowed remote
+hosts in its CSP. The following MINIMAL, DOCUMENTED offline patches were applied to index.js
+(each marked inline with `[stealthbench offline patch]`) to honour the self-host-only invariant
+while preserving the panel's detection semantics:
+
+  1. testCsp() — the upstream CSP-bypass probe loads a REMOTE <script src=...w3schools.com...>.
+     Re-pointed at a local nonexistent path (./rebrowser/csp-probe-should-404.js): it 404s →
+     onerror fires (exactly as a normal CSP-respecting browser behaves) → reports "CSP enabled"
+     (rating -1), with zero network egress.
+
+  2. testUseragent() — the upstream test fetch()es the latest Chrome release from a REMOTE
+     endpoint (chromiumdash.appspot.com) to flag abnormal versions. The remote fetch is
+     disabled (throws locally) so control falls through to the existing catch → neutral rating 0.
+     The remote version comparison is not part of this benchmark's signal.
+
+  3. initTests() — added a `window.__REBROWSER_DONE__` readiness flag (set ~1200ms after init)
+     so the panel can be measured deterministically by an unattended driver.
+
+The host page (../rebrowser.html) additionally tightens the Content-Security-Policy meta to a
+self-only policy (no remote hosts), replacing the upstream policy that allowed cloudflareinsights.
+
+No detection logic was otherwise altered. Inert attribution links (`<a href target="_blank">`)
+inside result-note strings are retained but are never auto-loaded.

@@ -83,6 +83,8 @@ A run is the cross-product **configs × detectors × trials**:
 | **tells panel** | A transparent panel of ~17 individual automation/fingerprint checks (`navigator.webdriver`, CDC props, WebGL hardware, plugin/mimetype counts, UA, permissions consistency, …). Reports `passed` / `total`. |
 | **BotD** | [`@fingerprintjs/botd`](https://github.com/fingerprintjs/BotD) — returns whether it thinks you're a bot and, if so, which kind (`selenium`, `headless_chrome`, …). |
 | **CreepJS** | A self-hosted copy of [CreepJS](https://github.com/abrahamjuliot/creepjs) — contributes its count of detected *lies* (fingerprint inconsistencies). |
+| **Sannysoft** | A self-hosted, Sannysoft-style panel of ~18 navigator-property / automation-flag checks (`navigator.webdriver`, chromedriver `cdc_` props, plugins/mimeTypes, `window.chrome`, permissions, PhantomJS/Selenium markers, WebGL, …). Reports `passed` / `failed` / `total`. |
+| **rebrowser** | A self-hosted, offline build of [`rebrowser-bot-detector`](https://github.com/rebrowser/rebrowser-bot-detector) — CDP / Puppeteer / Playwright **runtime-leak** tests (`runtimeEnableLeak`, `navigatorWebdriver`, `pwInitScripts`, …). Reports `tests_total` / `tests_failed`. |
 
 The orchestrator runs each config through each detector for N trials, isolating errors
 so one flaky detector or config can't abort the run, and folds everything into a typed,
@@ -140,7 +142,9 @@ stealthbench talks to two local detector servers. Bring them up, then run the be
 #    (like `npm ci` for the BotD bundle) — needed for the `camoufox` config
 uv run camoufox fetch
 
-# 1. tells panel + BotD on :8901  (the BotD bundle is vendored via package-lock.json)
+# 1. tells + BotD + Sannysoft + rebrowser panels on :8901
+#    (BotD is vendored via package-lock.json; the Sannysoft + rebrowser panels are
+#     plain vendored assets — served by the same server, no build step of their own)
 ( cd src/stealthbench/detectors/assets && npm ci && python3 -m http.server 8901 ) &
 
 # 2. CreepJS on :8902  (prebuilt bundle, no build step)
@@ -156,7 +160,7 @@ This writes a fresh `results/<timestamp>.json`, a `results/summary.md` table, an
 
 ```
 --trials N            number of trials (default 3)
---detector-host URL   tells + BotD host (default http://localhost:8901)
+--detector-host URL   tells + BotD + Sannysoft + rebrowser host (default http://localhost:8901)
 --creep-host  URL     CreepJS host        (default http://localhost:8902)
 ```
 
@@ -170,7 +174,7 @@ The published numbers are reproducible. To regenerate `results/` from scratch:
 1. **Prerequisites:** Python 3.12+, [uv](https://docs.astral.sh/uv/), a real
    Chrome/Chromium, and Node.js. Run `uv sync` once, then fetch Camoufox's patched
    Firefox once (needed for the `camoufox` config): `uv run camoufox fetch`.
-2. **tells + BotD server** (`:8901`):
+2. **tells + BotD + Sannysoft + rebrowser server** (`:8901`):
    `( cd src/stealthbench/detectors/assets && npm ci && python3 -m http.server 8901 ) &`
 3. **CreepJS server** (`:8902`):
    `git clone --depth 1 https://github.com/abrahamjuliot/creepjs.git /tmp/creepjs && ( cd /tmp/creepjs/docs && python3 -m http.server 8902 ) &`
@@ -192,7 +196,7 @@ steps above.
 src/stealthbench/
 ├── core/            # BrowserHandle / Config / Detector Protocols + wait_until + BenchResult schema
 ├── configs/         # SeleniumHandle + PlaywrightHandle + vanilla / stealth / uc / camoufox  (the ONLY driver-SDK importers)
-├── detectors/       # tells / botd / creepjs  (+ self-hosted HTML assets)
+├── detectors/       # tells / botd / creepjs / sannysoft / rebrowser  (+ self-hosted HTML assets)
 ├── runner.py        # run_bench: configs × detectors × trials, error-isolating
 ├── report.py        # summarize() + render_chart() from a results file
 └── __main__.py      # CLI: python -m stealthbench
@@ -227,10 +231,19 @@ are tracked privately and aren't published in this repo.
 
 ## Acknowledgements
 
-Built on the open detectors it measures against —
-[BotD](https://github.com/fingerprintjs/BotD) by FingerprintJS and
-[CreepJS](https://github.com/abrahamjuliot/creepjs) by Abraham Juliot — both self-hosted
-here so nothing touches their live services.
+Built on the open detectors it measures against — all self-hosted here so nothing touches
+their live services:
+
+- [BotD](https://github.com/fingerprintjs/BotD) by FingerprintJS (MIT).
+- [CreepJS](https://github.com/abrahamjuliot/creepjs) by Abraham Juliot (MIT).
+- The **Sannysoft-style** panel reproduces the navigator-property / automation-flag checks of
+  [fpscanner](https://github.com/antoinevastel/fpscanner) (Antoine Vastel),
+  [intoli-article-materials](https://github.com/intoli/intoli-article-materials) (Intoli), and
+  [detect-headless](https://github.com/infosimples/detect-headless) (Infosimples) — all MIT
+  (see `src/stealthbench/detectors/assets/sannysoft/LICENSE`).
+- [`rebrowser-bot-detector`](https://github.com/rebrowser/rebrowser-bot-detector) by Rebrowser
+  (MIT), vendored as a self-hosted **offline** build (remote version/CSP probes neutralized —
+  see `src/stealthbench/detectors/assets/rebrowser/NOTICE`).
 
 ## License
 
