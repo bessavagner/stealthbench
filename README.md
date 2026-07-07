@@ -164,9 +164,15 @@ This writes a fresh `results/<timestamp>.json`, a `results/summary.md` table, an
 
 ```
 --trials N            number of trials (default 3)
+--config NAME         config(s) to run; repeatable, comma-ok (default: all).
+                      one of: vanilla, stealth, uc, camoufox, nodriver
+--detector NAME       detector(s) to run; repeatable, comma-ok (default: all).
+                      one of: tells, botd, sannysoft, rebrowser, creepjs
 --detector-host URL   tells + BotD + Sannysoft + rebrowser host (default http://localhost:8901)
 --creep-host  URL     CreepJS host        (default http://localhost:8902)
 ```
+
+> A bare run exercises the full 5×5 matrix (unchanged); selecting a subset runs only those cells.
 
 > Runs are **headful** by design (a headless browser is itself a strong tell). On a
 > headless machine, run behind a virtual display such as `Xvfb`.

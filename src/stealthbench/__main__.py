@@ -22,6 +22,13 @@ from stealthbench.detectors.tells import TellsPanel
 from stealthbench.history import load_series
 from stealthbench.report import render_chart, render_trend, summarize
 from stealthbench.runner import run_bench
+from stealthbench.selection import (
+    CONFIG_NAMES,
+    DETECTOR_NAMES,
+    filter_configs,
+    filter_detectors,
+    parse_selection,
+)
 
 
 def _chrome_major() -> int | None:
@@ -56,23 +63,49 @@ def main() -> None:
     p.add_argument("--trials", type=int, default=3)
     p.add_argument("--detector-host", default="http://localhost:8901")
     p.add_argument("--creep-host", default="http://localhost:8902")
+    p.add_argument(
+        "--config",
+        action="append",
+        metavar="NAME",
+        help="config to run (repeatable, comma-ok); default: all. "
+        "one of: " + ", ".join(CONFIG_NAMES),
+    )
+    p.add_argument(
+        "--detector",
+        action="append",
+        metavar="NAME",
+        help="detector to run (repeatable, comma-ok); default: all. "
+        "one of: " + ", ".join(DETECTOR_NAMES),
+    )
     args = p.parse_args()
 
+    try:
+        config_names = parse_selection(args.config, CONFIG_NAMES, "config")
+        detector_names = parse_selection(args.detector, DETECTOR_NAMES, "detector")
+    except ValueError as exc:
+        p.error(str(exc))  # exit 2 at parse time; never a silent empty run
+
     chrome = _chrome_major()
-    configs = [
-        VanillaConfig(),
-        StealthConfig(),
-        UcConfig(chrome_major=chrome),
-        CamoufoxConfig(),
-        NodriverConfig(),
-    ]
-    detectors = [
-        TellsPanel(args.detector_host),
-        BotD(args.detector_host),
-        Sannysoft(args.detector_host),
-        Rebrowser(args.detector_host),
-        CreepJS(args.creep_host),
-    ]
+    configs = filter_configs(
+        [
+            VanillaConfig(),
+            StealthConfig(),
+            UcConfig(chrome_major=chrome),
+            CamoufoxConfig(),
+            NodriverConfig(),
+        ],
+        config_names,
+    )
+    detectors = filter_detectors(
+        [
+            TellsPanel(args.detector_host),
+            BotD(args.detector_host),
+            Sannysoft(args.detector_host),
+            Rebrowser(args.detector_host),
+            CreepJS(args.creep_host),
+        ],
+        detector_names,
+    )
     meta = RunMetadata(
         timestamp=datetime.now(timezone.utc).isoformat(),
         browser=(f"Chrome {chrome}" if chrome else "Chrome (unknown)") + " + Camoufox",
