@@ -22,6 +22,7 @@ dependencies = [
     #     pages run heavy JS, so this is a real risk here.
     # Empirically clean: 1.55–1.59 (navigator.webdriver stays false). Pin to that range.
     "playwright>=1.55,<1.60",
+    "nodriver>=0.35",
 ]
 
 [dependency-groups]
