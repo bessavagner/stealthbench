@@ -137,6 +137,11 @@ uv sync
 uv run camoufox fetch
 ```
 
+> **`pip install` ships the runner + CLI only.** `pipx install --index-url https://test.pypi.org/simple/ stealthbench`
+> (TestPyPI) gives you the `stealthbench` and `stealthbench-serve` commands — but a real run
+> still needs a browser stack (Chrome/Chromium, Camoufox/Firefox, Node.js) and the detector
+> servers (`stealthbench-serve`). Install ≠ ready-to-run.
+
 ## Run a benchmark
 
 stealthbench talks to two local detector servers. Bring them up, then run the bench:
