@@ -16,16 +16,26 @@ run all of them through the same detectors on the same machine and read the numb
 
 ## Latest snapshot
 
-Chrome 149 + Camoufox · Linux · 3 trials · `results/20260706T214120910749.json`
+Chrome 149 + Camoufox · Linux · **10 trials** · `results/20260707T080815283159.json`
+
+Tells % is `mean ± stdev [min–max]` across the 10 trials (schema v2 records the
+per-trial spread; older v1 snapshots stay readable).
 
 | Config | Automation-tells passed | BotD verdict | CreepJS local lies |
 |---|:---:|:---:|:---:|
-| vanilla (stock Selenium) | 82% | caught (selenium) | 0 |
-| selenium-stealth | 94% | caught (selenium) | 2 |
-| undetected-chromedriver | 94% | **passed** | 0 |
-| camoufox (stealth Firefox) | 82% | **passed** | 0 |
+| vanilla (stock Selenium) | 85 ± 3 [82–88] | caught (selenium) | 0 |
+| selenium-stealth | 94 ± 0 [94–94] | caught (selenium) | 2 |
+| undetected-chromedriver | 95 ± 2 [94–100] | **passed** | 0 |
+| camoufox (stealth Firefox) | 82 ± 0 [82–82] | **passed** | 0 |
+
+Versions: Selenium 4.45.0 · selenium-stealth 1.0.6 · undetected-chromedriver 3.5.5 ·
+Playwright 1.59.0 · Camoufox 0.4.11.
 
 ![Automation-tells passed per config; bar colour = BotD verdict](results/pass-rate.png)
+
+Tells % per config across committed snapshots (trend over time):
+
+![Tells % per config across snapshots](results/trend.png)
 
 > `camoufox` passes BotD and CreepJS while scoring 82% on the tells panel — the three
 > tells it "fails" are Chrome-specific (`window.chrome` present, Chrome's `productSub`,
@@ -169,7 +179,8 @@ The published numbers are reproducible. To regenerate `results/` from scratch:
    is itself a strong tell), so it needs a display. Wrap the run instead of
    trying to force headless: `xvfb-run -a uv run python -m stealthbench --trials 3`.
 6. **Commit the regenerated artifacts** for traceability: the new
-   `results/<timestamp>.json`, `results/summary.md`, and `results/pass-rate.png`.
+   `results/<timestamp>.json`, `results/summary.md`, `results/pass-rate.png`, and
+   the updated `results/trend.png`.
 
 A headful CI workflow (running this under Xvfb on GitHub-hosted runners) is
 intentionally deferred to a future pull — for now, reproduce locally via the
@@ -211,8 +222,8 @@ number can be recomputed from the committed data. Results are versioned
 ## Roadmap
 
 The stealth-Firefox (Camoufox/Playwright) config arm has landed. More detectors, a
-headful CI workflow, and packaging are planned. The public backlog lands under
-`docs/plans/`.
+headful CI workflow, and packaging are planned. The backlog and per-sprint plans
+are tracked privately and aren't published in this repo.
 
 ## Acknowledgements
 
