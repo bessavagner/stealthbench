@@ -142,22 +142,21 @@ uv run camoufox fetch
 stealthbench talks to two local detector servers. Bring them up, then run the bench:
 
 ```bash
-# 0. one-time after `uv sync`: download Camoufox's patched Firefox
-#    (like `npm ci` for the BotD bundle) — needed for the `camoufox` config
+# 0. one-time after `uv sync`: fetch Camoufox's patched Firefox (for the `camoufox` config)
 uv run camoufox fetch
 
-# 1. tells + BotD + Sannysoft + rebrowser panels on :8901
-#    (BotD is vendored via package-lock.json; the Sannysoft + rebrowser panels are
-#     plain vendored assets — served by the same server, no build step of their own)
-( cd src/stealthbench/detectors/assets && npm ci && python3 -m http.server 8901 ) &
+# 1. start both detector servers + fetch/serve CreepJS, health-check both (one command)
+uv run python -m stealthbench.serve &
 
-# 2. CreepJS on :8902  (prebuilt bundle, no build step)
-git clone --depth 1 https://github.com/abrahamjuliot/creepjs.git /tmp/creepjs
-( cd /tmp/creepjs/docs && python3 -m http.server 8902 ) &
-
-# 3. run the benchmark (headful; needs a display)
+# 2. run the benchmark (headful; needs a display)
 uv run python -m stealthbench --trials 3
 ```
+
+> **What `serve` does under the hood:** `npm ci` in `src/stealthbench/detectors/assets`
+> then serves it on `:8901` (tells / BotD / Sannysoft / rebrowser); fetches CreepJS once
+> (`git clone --depth 1 https://github.com/abrahamjuliot/creepjs.git /tmp/creepjs`, an open
+> MIT bundle) and serves `docs/` on `:8902`. The fetch is a one-time setup convenience — the
+> bench itself contacts `localhost` only. Ports: `--detector-port` / `--creep-port`.
 
 This writes a fresh `results/<timestamp>.json`, a `results/summary.md` table, and a
 `results/pass-rate.png` chart, and prints the summary. Options:
@@ -184,15 +183,13 @@ The published numbers are reproducible. To regenerate `results/` from scratch:
 1. **Prerequisites:** Python 3.12+, [uv](https://docs.astral.sh/uv/), a real
    Chrome/Chromium, and Node.js. Run `uv sync` once, then fetch Camoufox's patched
    Firefox once (needed for the `camoufox` config): `uv run camoufox fetch`.
-2. **tells + BotD + Sannysoft + rebrowser server** (`:8901`):
-   `( cd src/stealthbench/detectors/assets && npm ci && python3 -m http.server 8901 ) &`
-3. **CreepJS server** (`:8902`):
-   `git clone --depth 1 https://github.com/abrahamjuliot/creepjs.git /tmp/creepjs && ( cd /tmp/creepjs/docs && python3 -m http.server 8902 ) &`
-4. **Run the bench (headful):** `uv run python -m stealthbench --trials 3`
-5. **On a headless machine:** the bench is headful by design (a headless browser
+2. **Start the detector servers** (both + CreepJS, health-checked):
+   `uv run python -m stealthbench.serve &`
+3. **Run the bench (headful):** `uv run python -m stealthbench --trials 3`
+4. **On a headless machine:** the bench is headful by design (a headless browser
    is itself a strong tell), so it needs a display. Wrap the run instead of
    trying to force headless: `xvfb-run -a uv run python -m stealthbench --trials 3`.
-6. **Commit the regenerated artifacts** for traceability: the new
+5. **Commit the regenerated artifacts** for traceability: the new
    `results/<timestamp>.json`, `results/summary.md`, `results/pass-rate.png`, and
    the updated `results/trend.png`.
 
