@@ -151,7 +151,15 @@ def render_chart(bench: BenchResult, out_path: str) -> None:
     import matplotlib.pyplot as plt
 
     names = _config_names(bench)
-    pcts = [(_avg_tells_pct(bench, n) or 0) for n in names]
+    spreads = [_spread(_tells_pct_series(bench, n)) for n in names]
+    pcts = [(sp["mean"] if sp else 0) for sp in spreads]
+    # Asymmetric min–max whiskers: how far each config's trials ranged below and above
+    # the mean. A deterministic config collapses to a zero-length whisker; a wobbling one
+    # shows a visible bracket. An errored/absent cell has no spread, so no whisker.
+    yerr = [
+        [(sp["mean"] - sp["min"]) if sp else 0 for sp in spreads],
+        [(sp["max"] - sp["mean"]) if sp else 0 for sp in spreads],
+    ]
     colors = [
         _style.PALETTE["passed"]
         if not (_last(bench, n, "botd") or {}).get("bot")
@@ -159,10 +167,11 @@ def render_chart(bench: BenchResult, out_path: str) -> None:
         for n in names
     ]
     fig, ax = plt.subplots(figsize=(7.4, 4.6))
-    bars = ax.bar(range(len(names)), pcts, color=colors, width=0.6)
-    ax.set_ylim(0, 100)
+    bars = ax.bar(range(len(names)), pcts, color=colors, width=0.6,
+                  yerr=yerr, capsize=5, error_kw={"ecolor": "#37474f", "elinewidth": 1.4})
+    ax.set_ylim(0, 112)  # headroom so a whisker/label at 100 clears the title
     ax.set_ylabel("Automation-tells passed (%)")
-    ax.set_title("stealthbench — tells panel (bar colour = BotD verdict)")
+    ax.set_title("stealthbench — tells panel (colour = BotD verdict, whiskers = min–max)")
     ax.set_xticks(range(len(names)))
     ax.set_xticklabels(names, rotation=10, ha="right")
     ax.bar_label(bars, fmt="%.0f%%", padding=3)
