@@ -8,6 +8,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from stealthbench.configs.camoufox import CamoufoxConfig
+from stealthbench.configs.nodriver import NodriverConfig
 from stealthbench.configs.stealth import StealthConfig
 from stealthbench.configs.uc import UcConfig
 from stealthbench.configs.vanilla import VanillaConfig
@@ -63,6 +64,7 @@ def main() -> None:
         StealthConfig(),
         UcConfig(chrome_major=chrome),
         CamoufoxConfig(),
+        NodriverConfig(),
     ]
     detectors = [
         TellsPanel(args.detector_host),
