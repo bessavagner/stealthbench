@@ -16,20 +16,24 @@ run all of them through the same detectors on the same machine and read the numb
 
 ## Latest snapshot
 
-Chrome 149 + Camoufox · Linux · **10 trials** · `results/20260707T080815283159.json`
+Chrome 149 + Camoufox + nodriver · Linux · **10 trials** · `results/20260707T142720391180.json`
 
-Tells % is `mean ± stdev [min–max]` across the 10 trials (schema v2 records the
-per-trial spread; older v1 snapshots stay readable).
+Five configs now run against five detectors. Tells % is `mean ± stdev [min–max]` across the
+10 trials (schema v2 records the per-trial spread; older v1 snapshots stay readable). The table
+below mirrors `results/summary.md`; the **Sannysoft-panel** (`passed`/`failed`/`total`) and
+**rebrowser** (`tests_total`/`tests_failed`) counts for every config live in the committed
+`results/*.json` — numbers-only, so they aren't folded into this summary table.
 
 | Config | Automation-tells passed | BotD verdict | CreepJS local lies |
 |---|:---:|:---:|:---:|
-| vanilla (stock Selenium) | 85 ± 3 [82–88] | caught (selenium) | 0 |
+| vanilla (stock Selenium) | 84 ± 2 [82–88] | caught (selenium) | 0 |
 | selenium-stealth | 94 ± 0 [94–94] | caught (selenium) | 2 |
-| undetected-chromedriver | 95 ± 2 [94–100] | **passed** | 0 |
+| undetected-chromedriver | 94 ± 0 [94–94] | **passed** | 0 |
 | camoufox (stealth Firefox) | 82 ± 0 [82–82] | **passed** | 0 |
+| nodriver (direct CDP) | 95 ± 2 [94–100] | **passed** | 0 |
 
 Versions: Selenium 4.45.0 · selenium-stealth 1.0.6 · undetected-chromedriver 3.5.5 ·
-Playwright 1.59.0 · Camoufox 0.4.11.
+Playwright 1.59.0 · Camoufox 0.4.11 · nodriver 0.50.3.
 
 ![Automation-tells passed per config; bar colour = BotD verdict](results/pass-rate.png)
 
