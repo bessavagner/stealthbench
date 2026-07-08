@@ -14,6 +14,22 @@ never extracts anyone's data, and every detector runs on your own `localhost`.
 The point is simple: instead of arguing about which automation setup is "stealthier,"
 run all of them through the same detectors on the same machine and read the numbers.
 
+## Contents
+
+- [Latest snapshot](#latest-snapshot)
+- [Scope & ethics](#scope--ethics)
+- [How it works](#how-it-works)
+- [Architecture](#architecture)
+- [Install](#install)
+- [Run a benchmark](#run-a-benchmark)
+- [Regenerating the snapshot](#regenerating-the-snapshot)
+- [Project layout](#project-layout)
+- [Development](#development)
+- [Reproducibility](#reproducibility)
+- [Roadmap](#roadmap)
+- [Acknowledgements](#acknowledgements)
+- [License](#license)
+
 ## Latest snapshot
 
 Chrome 149 + Camoufox + nodriver · Linux · **10 trials** · `results/20260707T142720391180.json`
@@ -79,6 +95,7 @@ A run is the cross-product **configs × detectors × trials**:
 | `selenium-stealth` | Selenium + [`selenium-stealth`](https://pypi.org/project/selenium-stealth/) patches (webdriver flag, languages, vendor, WebGL, UA). |
 | `undetected-chromedriver` | [`undetected-chromedriver`](https://pypi.org/project/undetected-chromedriver/), pinned to the installed Chrome major. |
 | `camoufox` | [Camoufox](https://github.com/daijro/camoufox) — a stealth **Firefox** driven through Playwright's sync API, fingerprint-spoofed by default. The one non-Chrome arm in the fleet. |
+| `nodriver` | [nodriver](https://github.com/ultrafunkamsterdam/nodriver) — drives Chrome directly over CDP with no Selenium/WebDriver layer at all; async, adapted through a sync `BrowserHandle` facade. |
 
 **Detectors** (measure signals from a browser, return numbers):
 
@@ -116,7 +133,7 @@ Config.build() ─┐                          ┌─ Detector.measure(handle)
   **zero detector changes**.
 - **Provider seam is enforced:** only `src/stealthbench/configs/` imports a driver SDK
   (`selenium` / `selenium-stealth` / `undetected-chromedriver` / `camoufox` +
-  `playwright`). Everything else — `core/`, `runner.py`, `report.py`, and every detector
+  `playwright` / `nodriver`). Everything else — `core/`, `runner.py`, `report.py`, and every detector
   — depends only on the Protocols. A test (`tests/test_seam.py`) fails the build if a
   browser SDK is imported anywhere outside `configs/`.
 - **The pure core is unit-tested with fakes** (no browser required); the browser-touching
@@ -207,13 +224,17 @@ steps above.
 ```
 src/stealthbench/
 ├── core/            # BrowserHandle / Config / Detector Protocols + wait_until + BenchResult schema
-├── configs/         # SeleniumHandle + PlaywrightHandle + vanilla / stealth / uc / camoufox  (the ONLY driver-SDK importers)
+├── configs/         # SeleniumHandle / PlaywrightHandle / NodriverHandle + vanilla / stealth / uc / camoufox / nodriver  (the ONLY driver-SDK importers)
 ├── detectors/       # tells / botd / creepjs / sannysoft / rebrowser  (+ self-hosted HTML assets)
+├── selection.py     # pure --config / --detector name→filter layer (no SDK)
+├── serve.py         # one-command detector-server bring-up (stdlib http.server + CreepJS fetch)
 ├── runner.py        # run_bench: configs × detectors × trials, error-isolating
-├── report.py        # summarize() + render_chart() from a results file
-└── __main__.py      # CLI: python -m stealthbench
+├── report.py        # summarize() + render_chart() + render_trend() from a results file
+├── history.py       # load committed snapshots into a trend series
+├── env.py           # capture component versions into run metadata
+└── __main__.py      # CLI: python -m stealthbench  (--config / --detector / --trials)
 tests/               # pure-core unit tests (fakes; no browser) + detector contract tests
-results/             # committed benchmark snapshots (json + summary.md + chart)
+results/             # committed benchmark snapshots (json + summary.md + charts)
 ```
 
 ## Development
@@ -237,9 +258,14 @@ number can be recomputed from the committed data. Results are versioned
 
 ## Roadmap
 
-The stealth-Firefox (Camoufox/Playwright) config arm has landed. More detectors, a
-headful CI workflow, and packaging are planned. The backlog and per-sprint plans
-are tracked privately and aren't published in this repo.
+**Landed:** the stealth-Firefox (Camoufox/Playwright) and direct-CDP (nodriver) config
+arms; the Sannysoft and rebrowser detectors; per-trial variance + a snapshot-history trend
+chart; CLI selection of configs/detectors (`--config` / `--detector`); one-command detector
+bring-up (`stealthbench.serve`); and a tag-triggered TestPyPI release workflow.
+
+**Planned:** a headful CI workflow (Xvfb on GitHub-hosted runners) and hardening of the
+local dev server. The backlog and per-sprint plans are tracked privately and aren't
+published in this repo.
 
 ## Acknowledgements
 
