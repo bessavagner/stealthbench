@@ -1,6 +1,6 @@
 [project]
 name = "stealthbench"
-version = "0.0.1"
+version = "0.1.0"
 description = "A reproducible benchmark that puts numbers on browser-automation stealth."
 readme = "README.md"
 license = "MIT"
@@ -24,6 +24,10 @@ dependencies = [
     "playwright>=1.55,<1.60",
     "nodriver>=0.35",
 ]
+
+[project.scripts]
+stealthbench = "stealthbench.__main__:main"
+stealthbench-serve = "stealthbench.serve:main"
 
 [dependency-groups]
 dev = ["pytest>=8", "ruff>=0.5"]
