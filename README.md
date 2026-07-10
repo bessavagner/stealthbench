@@ -116,16 +116,38 @@ result file.
 
 The design rests on two `Protocol` seams that meet at a driver-agnostic `BrowserHandle`:
 
+```mermaid
+flowchart TB
+    accTitle: stealthbench Protocol-Seam Architecture
+    accDescr: run_bench drives a config-by-detector matrix where each Config builds a driver-agnostic BrowserHandle and each Detector measures against that Protocol, producing a versioned BenchResult and report; only configs import a browser SDK.
+
+    runner([🔄 run_bench<br/>configs · detectors · metadata])
+
+    subgraph seam ["🧩 Driver-agnostic seam"]
+        direction LR
+        config_build[⚙️ Config.build<br/>imports a driver SDK] -->|builds| handle[[🌐 BrowserHandle<br/>goto · evaluate · quit]]
+        handle -->|passed to| detector_measure[🧪 Detector.measure<br/>Protocol-only]
+    end
+
+    runner -->|per matrix cell| config_build
+    detector_measure -->|measurement| result([📦 BenchResult])
+    result -->|versioned| report([📊 report<br/>table + chart])
+
+    classDef provider fill:#ffedd5,stroke:#ea580c,stroke-width:2px,color:#7c2d12
+    classDef seam_node fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#3b0764
+    classDef pure fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#1e3a5f
+    classDef output fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d
+
+    class config_build provider
+    class handle seam_node
+    class detector_measure,runner pure
+    class result,report output
 ```
-Config.build() ─┐                          ┌─ Detector.measure(handle)
-                ├──▶  BrowserHandle  ◀──────┤
- (imports a       (goto / evaluate / quit)    (depends only on the
-  driver SDK)                                   BrowserHandle Protocol)
-                          │
-                          ▼
-        run_bench(configs, detectors, metadata) ──▶ BenchResult ──▶ report
-             (pure, error-isolating)                 (versioned)     (table + chart)
-```
+
+> **Reading the diagram:** the orange `Config.build` node is the **only** side that imports a
+> browser SDK; the blue `Detector.measure` node is Protocol-only and never sees a driver. They
+> meet at the violet `BrowserHandle` seam. `run_bench` drives every config × detector cell and
+> aggregates into a versioned `BenchResult`.
 
 - **Detectors are written against `BrowserHandle`, not a raw driver.** The
   Camoufox/Playwright arm is exactly this: a new `Config` (`CamoufoxConfig`) plus a new
